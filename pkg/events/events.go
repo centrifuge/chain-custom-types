@@ -2,6 +2,7 @@ package events
 
 import (
 	"github.com/centrifuge/chain-custom-types/pkg/keystore"
+	"github.com/centrifuge/chain-custom-types/pkg/liquidityRewards"
 )
 
 type Events struct {
@@ -40,6 +41,8 @@ type Events struct {
 	Keystore_KeyAdded   []keystore.EventKeystoreKeyAdded   //nolint:stylecheck,golint
 	Keystore_KeyRevoked []keystore.EventKeystoreKeyRevoked //nolint:stylecheck,golint
 	Keystore_DepositSet []keystore.EventKeystoreDepositSet //nolint:stylecheck,golint
+
+	LiquidityRewards_NewEpoch []liquidityRewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
 
 	Nfts_DepositAsset []EventNftsDepositAsset //nolint:stylecheck,golint
 	Nft_Transferred   []EventNftTransferred   //nolint:stylecheck,golint
