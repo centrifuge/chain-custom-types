@@ -14,7 +14,7 @@ const (
 	Staking
 	NonProxy
 	Borrow
-	ProxyTypePrice
+	Price
 	Invest
 	ProxyManagement
 	KeystoreManagement
@@ -30,7 +30,7 @@ var (
 		Staking:            {},
 		NonProxy:           {},
 		Borrow:             {},
-		ProxyTypePrice:     {},
+		Price:              {},
 		Invest:             {},
 		ProxyManagement:    {},
 		KeystoreManagement: {},
@@ -39,33 +39,33 @@ var (
 	}
 
 	ProxyTypeName = map[CentrifugeProxyType]string{
-		Any:                "any",
-		NonTransfer:        "non_transfer",
-		Governance:         "governance",
-		Staking:            "staking",
-		NonProxy:           "non_proxy",
-		Borrow:             "borrow",
-		ProxyTypePrice:     "price",
-		Invest:             "invest",
-		ProxyManagement:    "proxy_management",
-		KeystoreManagement: "keystore_management",
-		PodOperation:       "pod_operation",
-		PodAuth:            "pod_auth",
+		Any:                "Any",
+		NonTransfer:        "NonTransfer",
+		Governance:         "Governance",
+		Staking:            "Staking",
+		NonProxy:           "NonProxy",
+		Borrow:             "Borrow",
+		Price:              "Price",
+		Invest:             "Invest",
+		ProxyManagement:    "ProxyManagement",
+		KeystoreManagement: "KeystoreManagement",
+		PodOperation:       "PodOperation",
+		PodAuth:            "PodAuth",
 	}
 
 	ProxyTypeValue = map[string]CentrifugeProxyType{
-		"any":                 Any,
-		"non_transfer":        NonTransfer,
-		"governance":          Governance,
-		"staking":             Staking,
-		"non_proxy":           NonProxy,
-		"borrow":              Borrow,
-		"price":               ProxyTypePrice,
-		"invest":              Invest,
-		"proxy_management":    ProxyManagement,
-		"keystore_management": KeystoreManagement,
-		"pod_operation":       PodOperation,
-		"pod_auth":            PodAuth,
+		"Any":                Any,
+		"NonTransfer":        NonTransfer,
+		"Governance":         Governance,
+		"Staking":            Staking,
+		"NonProxy":           NonProxy,
+		"Borrow":             Borrow,
+		"Price":              Price,
+		"Invest":             Invest,
+		"ProxyManagement":    ProxyManagement,
+		"KeystoreManagement": KeystoreManagement,
+		"PodOperation":       PodOperation,
+		"PodAuth":            PodAuth,
 	}
 )
 
