@@ -14,58 +14,58 @@ const (
 	Staking
 	NonProxy
 	Borrow
-	Price
 	Invest
 	ProxyManagement
 	KeystoreManagement
 	PodOperation
 	PodAuth
+	PermissionManagement
 )
 
 var (
 	proxyTypeMap = map[CentrifugeProxyType]struct{}{
-		Any:                {},
-		NonTransfer:        {},
-		Governance:         {},
-		Staking:            {},
-		NonProxy:           {},
-		Borrow:             {},
-		Price:              {},
-		Invest:             {},
-		ProxyManagement:    {},
-		KeystoreManagement: {},
-		PodOperation:       {},
-		PodAuth:            {},
+		Any:                  {},
+		NonTransfer:          {},
+		Governance:           {},
+		Staking:              {},
+		NonProxy:             {},
+		Borrow:               {},
+		Invest:               {},
+		ProxyManagement:      {},
+		KeystoreManagement:   {},
+		PodOperation:         {},
+		PodAuth:              {},
+		PermissionManagement: {},
 	}
 
 	ProxyTypeName = map[CentrifugeProxyType]string{
-		Any:                "Any",
-		NonTransfer:        "NonTransfer",
-		Governance:         "Governance",
-		Staking:            "Staking",
-		NonProxy:           "NonProxy",
-		Borrow:             "Borrow",
-		Price:              "Price",
-		Invest:             "Invest",
-		ProxyManagement:    "ProxyManagement",
-		KeystoreManagement: "KeystoreManagement",
-		PodOperation:       "PodOperation",
-		PodAuth:            "PodAuth",
+		Any:                  "Any",
+		NonTransfer:          "NonTransfer",
+		Governance:           "Governance",
+		Staking:              "Staking",
+		NonProxy:             "NonProxy",
+		Borrow:               "Borrow",
+		Invest:               "Invest",
+		ProxyManagement:      "ProxyManagement",
+		KeystoreManagement:   "KeystoreManagement",
+		PodOperation:         "PodOperation",
+		PodAuth:              "PodAuth",
+		PermissionManagement: "PermissionManagement",
 	}
 
 	ProxyTypeValue = map[string]CentrifugeProxyType{
-		"Any":                Any,
-		"NonTransfer":        NonTransfer,
-		"Governance":         Governance,
-		"Staking":            Staking,
-		"NonProxy":           NonProxy,
-		"Borrow":             Borrow,
-		"Price":              Price,
-		"Invest":             Invest,
-		"ProxyManagement":    ProxyManagement,
-		"KeystoreManagement": KeystoreManagement,
-		"PodOperation":       PodOperation,
-		"PodAuth":            PodAuth,
+		"Any":                  Any,
+		"NonTransfer":          NonTransfer,
+		"Governance":           Governance,
+		"Staking":              Staking,
+		"NonProxy":             NonProxy,
+		"Borrow":               Borrow,
+		"Invest":               Invest,
+		"ProxyManagement":      ProxyManagement,
+		"KeystoreManagement":   KeystoreManagement,
+		"PodOperation":         PodOperation,
+		"PodAuth":              PodAuth,
+		"PermissionManagement": PermissionManagement,
 	}
 )
 
