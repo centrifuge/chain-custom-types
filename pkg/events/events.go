@@ -3,6 +3,7 @@ package events
 import (
 	"github.com/centrifuge/chain-custom-types/pkg/keystore"
 	"github.com/centrifuge/chain-custom-types/pkg/liquidityRewards"
+	"github.com/centrifuge/chain-custom-types/pkg/permissions"
 	"github.com/centrifuge/chain-custom-types/pkg/pools"
 )
 
@@ -47,6 +48,10 @@ type Events struct {
 
 	Nfts_DepositAsset []EventNftsDepositAsset //nolint:stylecheck,golint
 	Nft_Transferred   []EventNftTransferred   //nolint:stylecheck,golint
+
+	Permissions_Added   []permissions.EventPermissionsAdded   //nolint:stylecheck,golint
+	Permissions_Removed []permissions.EventPermissionsRemoved //nolint:stylecheck,golint
+	Permissions_Purged  []permissions.EventPermissionsPurged  //nolint:stylecheck,golint
 
 	PoolSystem_Rebalanced        []pools.EventPoolSystemRebalanced        //nolint:stylecheck,golint
 	PoolSystem_MaxReserveSet     []pools.EventPoolSystemMaxReserveSet     //nolint:stylecheck,golint
