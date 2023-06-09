@@ -3,6 +3,7 @@ package events
 import (
 	"github.com/centrifuge/chain-custom-types/pkg/keystore"
 	"github.com/centrifuge/chain-custom-types/pkg/liquidityRewards"
+	"github.com/centrifuge/chain-custom-types/pkg/loans"
 	"github.com/centrifuge/chain-custom-types/pkg/permissions"
 	"github.com/centrifuge/chain-custom-types/pkg/pools"
 )
@@ -45,6 +46,15 @@ type Events struct {
 	Keystore_DepositSet []keystore.EventKeystoreDepositSet //nolint:stylecheck,golint
 
 	LiquidityRewards_NewEpoch []liquidityRewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
+
+	Loans_Created                   []loans.EventLoansCreated                   //nolint:stylecheck,golint
+	Loans_Borrowed                  []loans.EventLoansBorrowed                  //nolint:stylecheck,golint
+	Loans_Repaid                    []loans.EventLoansRepaid                    //nolint:stylecheck,golint
+	Loans_WrittenOff                []loans.EventLoansWrittenOff                //nolint:stylecheck,golint
+	Loans_Mutated                   []loans.EventLoansMutated                   //nolint:stylecheck,golint
+	Loans_Closed                    []loans.EventLoansClosed                    //nolint:stylecheck,golint
+	Loans_PortfolioValuationUpdated []loans.EventLoansPortfolioValuationUpdated //nolint:stylecheck,golint
+	Loans_WriteOffPolicyUpdated     []loans.EventLoansWriteOffPolicyUpdated     //nolint:stylecheck,golint
 
 	Nfts_DepositAsset []EventNftsDepositAsset //nolint:stylecheck,golint
 	Nft_Transferred   []EventNftTransferred   //nolint:stylecheck,golint
