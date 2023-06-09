@@ -121,7 +121,7 @@ func (t TrancheType) Encode(encoder scale.Encoder) error {
 }
 
 type NonResidual struct {
-	InterestRatePerSec types.UCompact
+	InterestRatePerSec types.U128
 	MinRiskBuffer      types.U64
 }
 
