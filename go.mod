@@ -3,9 +3,7 @@ module github.com/centrifuge/chain-custom-types
 go 1.18
 
 require (
-	// TODO(cdamian): Merge this.
-	// https://github.com/centrifuge/go-substrate-rpc-client/pull/349
-	github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.13-0.20230608140424-be998c7b93ec
+	github.com/centrifuge/go-substrate-rpc-client/v4 v4.0.13
 	github.com/google/gofuzz v1.1.1-0.20200604201612-c04b05f3adfa
 )
 
