@@ -61,6 +61,12 @@ type Events struct {
 	PoolSystem_Created           []pools.EventPoolSystemCreated           //nolint:stylecheck,golint
 	PoolSystem_Updated           []pools.EventPoolSystemUpdated           //nolint:stylecheck,golint
 
+	PoolRegistry_Registered       []pools.EventPoolRegistryRegistered       //nolint:stylecheck,golint
+	PoolRegistry_UpdateRegistered []pools.EventPoolRegistryUpdateRegistered //nolint:stylecheck,golint
+	PoolRegistry_UpdateExecuted   []pools.EventPoolRegistryUpdateExecuted   //nolint:stylecheck,golint
+	PoolRegistry_UpdateStored     []pools.EventPoolRegistryUpdateStored     //nolint:stylecheck,golint
+	PoolRegistry_MetadataSet      []pools.EventPoolRegistryMetadataSet      //nolint:stylecheck,golint
+
 	Registry_RegistryCreated []EventRegistryRegistryCreated //nolint:stylecheck,golint
 	Registry_Mint            []EventRegistryNftMint         //nolint:stylecheck,golint
 }
