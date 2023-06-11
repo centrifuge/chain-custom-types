@@ -3,6 +3,8 @@ package events
 import (
 	"github.com/centrifuge/chain-custom-types/pkg/keystore"
 	"github.com/centrifuge/chain-custom-types/pkg/liquidityRewards"
+	"github.com/centrifuge/chain-custom-types/pkg/loans"
+	"github.com/centrifuge/chain-custom-types/pkg/permissions"
 	"github.com/centrifuge/chain-custom-types/pkg/pools"
 )
 
@@ -45,8 +47,21 @@ type Events struct {
 
 	LiquidityRewards_NewEpoch []liquidityRewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
 
+	Loans_Created                   []loans.EventLoansCreated                   //nolint:stylecheck,golint
+	Loans_Borrowed                  []loans.EventLoansBorrowed                  //nolint:stylecheck,golint
+	Loans_Repaid                    []loans.EventLoansRepaid                    //nolint:stylecheck,golint
+	Loans_WrittenOff                []loans.EventLoansWrittenOff                //nolint:stylecheck,golint
+	Loans_Mutated                   []loans.EventLoansMutated                   //nolint:stylecheck,golint
+	Loans_Closed                    []loans.EventLoansClosed                    //nolint:stylecheck,golint
+	Loans_PortfolioValuationUpdated []loans.EventLoansPortfolioValuationUpdated //nolint:stylecheck,golint
+	Loans_WriteOffPolicyUpdated     []loans.EventLoansWriteOffPolicyUpdated     //nolint:stylecheck,golint
+
 	Nfts_DepositAsset []EventNftsDepositAsset //nolint:stylecheck,golint
 	Nft_Transferred   []EventNftTransferred   //nolint:stylecheck,golint
+
+	Permissions_Added   []permissions.EventPermissionsAdded   //nolint:stylecheck,golint
+	Permissions_Removed []permissions.EventPermissionsRemoved //nolint:stylecheck,golint
+	Permissions_Purged  []permissions.EventPermissionsPurged  //nolint:stylecheck,golint
 
 	PoolSystem_Rebalanced        []pools.EventPoolSystemRebalanced        //nolint:stylecheck,golint
 	PoolSystem_MaxReserveSet     []pools.EventPoolSystemMaxReserveSet     //nolint:stylecheck,golint
@@ -55,6 +70,12 @@ type Events struct {
 	PoolSystem_EpochExecuted     []pools.EventPoolSystemEpochExecuted     //nolint:stylecheck,golint
 	PoolSystem_Created           []pools.EventPoolSystemCreated           //nolint:stylecheck,golint
 	PoolSystem_Updated           []pools.EventPoolSystemUpdated           //nolint:stylecheck,golint
+
+	PoolRegistry_Registered       []pools.EventPoolRegistryRegistered       //nolint:stylecheck,golint
+	PoolRegistry_UpdateRegistered []pools.EventPoolRegistryUpdateRegistered //nolint:stylecheck,golint
+	PoolRegistry_UpdateExecuted   []pools.EventPoolRegistryUpdateExecuted   //nolint:stylecheck,golint
+	PoolRegistry_UpdateStored     []pools.EventPoolRegistryUpdateStored     //nolint:stylecheck,golint
+	PoolRegistry_MetadataSet      []pools.EventPoolRegistryMetadataSet      //nolint:stylecheck,golint
 
 	Registry_RegistryCreated []EventRegistryRegistryCreated //nolint:stylecheck,golint
 	Registry_Mint            []EventRegistryNftMint         //nolint:stylecheck,golint
