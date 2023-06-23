@@ -2,10 +2,10 @@ package events
 
 import (
 	"github.com/centrifuge/chain-custom-types/pkg/keystore"
-	"github.com/centrifuge/chain-custom-types/pkg/liquidityRewards"
 	"github.com/centrifuge/chain-custom-types/pkg/loans"
 	"github.com/centrifuge/chain-custom-types/pkg/permissions"
 	"github.com/centrifuge/chain-custom-types/pkg/pools"
+	"github.com/centrifuge/chain-custom-types/pkg/rewards"
 )
 
 type Events struct {
@@ -45,7 +45,13 @@ type Events struct {
 	Keystore_KeyRevoked []keystore.EventKeystoreKeyRevoked //nolint:stylecheck,golint
 	Keystore_DepositSet []keystore.EventKeystoreDepositSet //nolint:stylecheck,golint
 
-	LiquidityRewards_NewEpoch []liquidityRewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
+	LiquidityRewards_NewEpoch []rewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
+
+	LiquidityRewardsBase_GroupAwarded     []rewards.EventLiquidityRewardsBaseGroupAwarded     //nolint:stylecheck,golint
+	LiquidityRewardsBase_StakeDeposited   []rewards.EventLiquidityRewardsBaseStakeDeposited   //nolint:stylecheck,golint
+	LiquidityRewardsBase_StakeWithdrawn   []rewards.EventLiquidityRewardsBaseStakeWithdrawn   //nolint:stylecheck,golint
+	LiquidityRewardsBase_RewardClaimed    []rewards.EventLiquidityRewardsBaseRewardClaimed    //nolint:stylecheck,golint
+	LiquidityRewardsBase_CurrencyAttached []rewards.EventLiquidityRewardsBaseCurrencyAttached //nolint:stylecheck,golint
 
 	Loans_Created                   []loans.EventLoansCreated                   //nolint:stylecheck,golint
 	Loans_Borrowed                  []loans.EventLoansBorrowed                  //nolint:stylecheck,golint
