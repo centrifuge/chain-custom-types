@@ -1,6 +1,8 @@
-package liquidityRewards
+package rewards
 
 import "github.com/centrifuge/go-substrate-rpc-client/v4/types"
+
+// These are the events for the `liquidity-rewards` pallet.
 
 type EpochChanges struct {
 	Duration   types.Option[types.U32]
