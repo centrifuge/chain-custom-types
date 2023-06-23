@@ -47,7 +47,7 @@ type Events struct {
 
 	LiquidityRewards_NewEpoch []rewards.EventLiquidityRewardsNewEpoch //nolint:stylecheck,golint
 
-	LiquidityRewardsBase_GroupAwarded     []rewards.EventLiquidityRewardsBaseGroupAwarded     //nolint:stylecheck,golint
+	LiquidityRewardsBase_GroupRewarded    []rewards.EventLiquidityRewardsBaseGroupRewarded    //nolint:stylecheck,golint
 	LiquidityRewardsBase_StakeDeposited   []rewards.EventLiquidityRewardsBaseStakeDeposited   //nolint:stylecheck,golint
 	LiquidityRewardsBase_StakeWithdrawn   []rewards.EventLiquidityRewardsBaseStakeWithdrawn   //nolint:stylecheck,golint
 	LiquidityRewardsBase_RewardClaimed    []rewards.EventLiquidityRewardsBaseRewardClaimed    //nolint:stylecheck,golint

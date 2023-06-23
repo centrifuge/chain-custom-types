@@ -4,7 +4,7 @@ import "github.com/centrifuge/go-substrate-rpc-client/v4/types"
 
 // These are the events for the `rewards` pallet.
 
-type EventLiquidityRewardsBaseGroupAwarded struct {
+type EventLiquidityRewardsBaseGroupRewarded struct {
 	Phase   types.Phase
 	GroupID types.U32
 	Amount  types.U128
