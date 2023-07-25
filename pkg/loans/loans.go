@@ -329,8 +329,80 @@ type WriteOffStatus struct {
 type LoanInfo struct {
 	Schedule     RepaymentSchedule
 	Collateral   Asset
+	InterestRate InterestRate
 	Pricing      Pricing
 	Restrictions LoanRestrictions
+}
+
+type InterestRate struct {
+	IsFixed bool
+	AsFixed FixedInterestRate
+}
+
+func (i *InterestRate) Decode(decoder scale.Decoder) error {
+	b, err := decoder.ReadOneByte()
+
+	if err != nil {
+		return err
+	}
+
+	switch b {
+	case 0:
+		i.IsFixed = true
+
+		return decoder.Decode(&i.AsFixed)
+	default:
+		return errors.New("unsupported interest rate")
+	}
+}
+
+func (i InterestRate) Encode(encoder scale.Encoder) error {
+	switch {
+	case i.IsFixed:
+		if err := encoder.PushByte(0); err != nil {
+			return err
+		}
+
+		return encoder.Encode(i.AsFixed)
+	default:
+		return errors.New("unsupported interest rate")
+	}
+}
+
+type FixedInterestRate struct {
+	RatePerYear types.U128
+	Compounding CompoundingSchedule
+}
+
+type CompoundingSchedule struct {
+	IsSecondly bool
+}
+
+func (c *CompoundingSchedule) Decode(decoder scale.Decoder) error {
+	b, err := decoder.ReadOneByte()
+
+	if err != nil {
+		return err
+	}
+
+	switch b {
+	case 0:
+		c.IsSecondly = true
+
+		return nil
+	default:
+		return errors.New("unsupported compounding schedule")
+	}
+}
+
+func (c CompoundingSchedule) Encode(encoder scale.Encoder) error {
+	switch {
+	case c.IsSecondly:
+		return encoder.PushByte(0)
+	default:
+		return errors.New("unsupported compounding schedule")
+
+	}
 }
 
 type Pricing struct {
@@ -384,13 +456,56 @@ func (p Pricing) Encode(encoder scale.Encoder) error {
 type InternalPricing struct {
 	CollateralValue types.U128
 	ValuationMethod ValuationMethod
-	InterestRate    types.U128
-	MaxBorrowAmount MaxBorrowAmount
+	MaxBorrowAmount InternalPricingMaxBorrowAmount
 }
 
 type ExternalPricing struct {
-	PriceID           PriceID
-	MaxBorrowQuantity types.U128
+	PriceID         PriceID
+	MaxBorrowAmount ExternalPricingMaxBorrowAmount
+	Notional        types.U128
+}
+
+type ExternalPricingMaxBorrowAmount struct {
+	IsNoLimit bool
+
+	IsQuantity bool
+	AsQuantity types.U128
+}
+
+func (e *ExternalPricingMaxBorrowAmount) Decode(decoder scale.Decoder) error {
+	b, err := decoder.ReadOneByte()
+
+	if err != nil {
+		return err
+	}
+
+	switch b {
+	case 0:
+		e.IsNoLimit = true
+
+		return nil
+	case 1:
+		e.IsQuantity = true
+
+		return decoder.Decode(&e.AsQuantity)
+	default:
+		return errors.New("unsupported external pricing max borrow amount")
+	}
+}
+
+func (e ExternalPricingMaxBorrowAmount) Encode(encoder scale.Encoder) error {
+	switch {
+	case e.IsNoLimit:
+		return encoder.PushByte(0)
+	case e.IsQuantity:
+		if err := encoder.PushByte(1); err != nil {
+			return err
+		}
+
+		return encoder.Encode(e.AsQuantity)
+	default:
+		return errors.New("unsupported external pricing max borrow amount")
+	}
 }
 
 type PriceID struct {
@@ -507,7 +622,7 @@ func (r RepayRestrictions) Encode(encoder scale.Encoder) error {
 	}
 }
 
-type MaxBorrowAmount struct {
+type InternalPricingMaxBorrowAmount struct {
 	IsUpToTotalBorrowed bool
 	AsUpToTotalBorrowed AdvanceRate
 
@@ -519,7 +634,7 @@ type AdvanceRate struct {
 	AdvanceRate types.U128
 }
 
-func (m *MaxBorrowAmount) Decode(decoder scale.Decoder) error {
+func (m *InternalPricingMaxBorrowAmount) Decode(decoder scale.Decoder) error {
 	b, err := decoder.ReadOneByte()
 
 	if err != nil {
@@ -540,7 +655,7 @@ func (m *MaxBorrowAmount) Decode(decoder scale.Decoder) error {
 	}
 }
 
-func (m MaxBorrowAmount) Encode(encoder scale.Encoder) error {
+func (m InternalPricingMaxBorrowAmount) Encode(encoder scale.Encoder) error {
 	switch {
 	case m.IsUpToTotalBorrowed:
 		if err := encoder.PushByte(0); err != nil {
@@ -605,7 +720,7 @@ func (v ValuationMethod) Encode(encoder scale.Encoder) error {
 type DiscountedCashFlow struct {
 	ProbabilityOfDefault types.U128
 	LossGivenDefault     types.U128
-	DiscountRate         types.U128
+	DiscountRate         InterestRate
 }
 
 type Asset struct {
@@ -677,9 +792,30 @@ func (i InterestPayments) Encode(encoder scale.Encoder) error {
 	return encoder.PushByte(0)
 }
 
+type FixedMaturity struct {
+	Date      types.U64
+	Extension types.U64
+}
+
+func (f *FixedMaturity) Decode(decoder scale.Decoder) error {
+	if err := decoder.Decode(&f.Date); err != nil {
+		return err
+	}
+
+	return decoder.Decode(&f.Extension)
+}
+
+func (f FixedMaturity) Encode(encoder scale.Encoder) error {
+	if err := encoder.Encode(f.Date); err != nil {
+		return err
+	}
+
+	return encoder.Encode(f.Extension)
+}
+
 type Maturity struct {
 	IsFixed bool
-	AsFixed types.U64
+	AsFixed FixedMaturity
 }
 
 func (m *Maturity) Decode(decoder scale.Decoder) error {
