@@ -70,6 +70,32 @@ type EventLoansWriteOffPolicyUpdated struct {
 	Topics []types.Hash
 }
 
+type ActiveLoan struct {
+	Schedule                  RepaymentSchedule
+	Collateral                Asset
+	Restrictions              LoanRestrictions
+	Borrower                  types.AccountID
+	WriteOffPercentage        types.U128
+	OriginationDate           types.U64
+	Pricing                   Pricing
+	TotalBorrowed             types.U128
+	TotalRepaid               RepaidAmount
+	RepaymentsOnScheduleUntil types.U64
+}
+
+type RepaidAmount struct {
+	Principal   types.U128
+	Interest    types.U128
+	Unscheduled types.U128
+}
+
+type ClosedLoan struct {
+	ClosedAt      types.U32
+	Info          LoanInfo
+	TotalBorrowed types.U128
+	TotalRepaid   RepaidAmount
+}
+
 type WriteOffRule struct {
 	Triggers []UniqueWriteOffTrigger
 	Status   WriteOffStatus
